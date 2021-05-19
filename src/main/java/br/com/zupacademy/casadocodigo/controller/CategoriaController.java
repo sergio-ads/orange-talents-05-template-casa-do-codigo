@@ -6,10 +6,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,20 +18,12 @@ import br.com.zupacademy.casadocodigo.dto.CategoriaDto;
 import br.com.zupacademy.casadocodigo.dto.CategoriaRequest;
 import br.com.zupacademy.casadocodigo.model.Categoria;
 import br.com.zupacademy.casadocodigo.repository.CategoriaRepository;
-import br.com.zupacademy.casadocodigo.validator.NomeUniqueValidator;
 
 @RestController
 @RequestMapping(value = "/categoria")
 public class CategoriaController {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
-	@Autowired
-	private NomeUniqueValidator nomeUniqueValidator;
-	
-	@InitBinder
-	public void init(WebDataBinder binder) {
-		binder.addValidators(nomeUniqueValidator);
-	}
 	
 	@GetMapping
 	public List<Categoria> listAll() {

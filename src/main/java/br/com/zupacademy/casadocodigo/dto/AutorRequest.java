@@ -5,12 +5,14 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import br.com.zupacademy.casadocodigo.model.Autor;
+import br.com.zupacademy.casadocodigo.validator.UniqueValue;
 
 public class AutorRequest {
 	@NotBlank
 	private String nome;
 	@Email
 	@NotBlank
+	@UniqueValue(domainClass = Autor.class, fieldName = "email")
 	private String email;
 	@NotBlank
 	@Size(max = 400)
