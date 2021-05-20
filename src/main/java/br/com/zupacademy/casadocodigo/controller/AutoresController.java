@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.zupacademy.casadocodigo.dto.AutorDto;
-import br.com.zupacademy.casadocodigo.dto.AutorRequest;
 import br.com.zupacademy.casadocodigo.model.Autor;
+import br.com.zupacademy.casadocodigo.model.dto.AutorDto;
+import br.com.zupacademy.casadocodigo.model.request.AutorRequest;
 import br.com.zupacademy.casadocodigo.repository.AutorRepository;
 
 @RestController
@@ -26,9 +26,9 @@ public class AutoresController {
 	private AutorRepository autorRepository;
 	
 	@GetMapping
-	public List<Autor> listAll() {
+	public List<AutorDto> listAll() {
 		List<Autor> autores = autorRepository.findAll();
-		return autores;
+		return AutorDto.converter(autores);
 	}
 	
 	@PostMapping

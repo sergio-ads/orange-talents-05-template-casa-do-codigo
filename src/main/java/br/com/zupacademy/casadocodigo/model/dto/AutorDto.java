@@ -1,4 +1,7 @@
-package br.com.zupacademy.casadocodigo.dto;
+package br.com.zupacademy.casadocodigo.model.dto;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import br.com.zupacademy.casadocodigo.model.Autor;
 
@@ -23,6 +26,10 @@ public class AutorDto {
 
 	public String getDescricao() {
 		return descricao;
+	}
+
+	public static List<AutorDto> converter(List<Autor> autores) {
+		return autores.stream().map(AutorDto::new).collect(Collectors.toList());
 	}	
 	
 }

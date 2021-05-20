@@ -1,4 +1,4 @@
-package br.com.zupacademy.casadocodigo.dto;
+package br.com.zupacademy.casadocodigo.model.request;
 
 import javax.validation.constraints.NotBlank;
 

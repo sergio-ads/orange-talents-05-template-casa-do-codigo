@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.zupacademy.casadocodigo.dto.CategoriaDto;
-import br.com.zupacademy.casadocodigo.dto.CategoriaRequest;
 import br.com.zupacademy.casadocodigo.model.Categoria;
+import br.com.zupacademy.casadocodigo.model.dto.CategoriaDto;
+import br.com.zupacademy.casadocodigo.model.request.CategoriaRequest;
 import br.com.zupacademy.casadocodigo.repository.CategoriaRepository;
 
 @RestController
@@ -26,9 +26,9 @@ public class CategoriaController {
 	private CategoriaRepository categoriaRepository;
 	
 	@GetMapping
-	public List<Categoria> listAll() {
+	public List<CategoriaDto> listAll() {
 		List<Categoria> categorias = categoriaRepository.findAll();
-		return categorias;
+		return CategoriaDto.converter(categorias);
 	}
 	
 	@PostMapping

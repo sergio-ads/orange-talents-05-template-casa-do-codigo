@@ -1,11 +1,13 @@
 package br.com.zupacademy.casadocodigo.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -24,6 +26,8 @@ public class Autor {
 	@Size(max = 400)
 	private String descricao;
 	private LocalDateTime dataCriacao = LocalDateTime.now();
+	@ManyToMany(mappedBy = "autores")
+	private List<Livro> livros;
 	
 	@Deprecated
 	public Autor() {
@@ -36,8 +40,8 @@ public class Autor {
 		this.descricao = descricao;
 	}
 	
-	public Long getId() {
-		return id;
+	public List<Livro> getLivros() {
+		return livros;
 	}
 	public String getNome() {
 		return nome;
