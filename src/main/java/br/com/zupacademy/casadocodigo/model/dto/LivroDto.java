@@ -5,11 +5,11 @@ import java.util.stream.Collectors;
 
 import br.com.zupacademy.casadocodigo.model.Livro;
 
-public class LivroSimplesDto {
+public class LivroDto {
 	private String isbn;
 	private String titulo;
 	
-	public LivroSimplesDto(Livro livro) {
+	public LivroDto(Livro livro) {
 		this.isbn = livro.getIsbn();
 		this.titulo = livro.getTitulo();
 	}
@@ -22,8 +22,8 @@ public class LivroSimplesDto {
 		return titulo;
 	}
 
-	public static List<LivroSimplesDto> converter(List<Livro> livros) {
-		return livros.stream().map(LivroSimplesDto::new).collect(Collectors.toList());
+	public static List<LivroDto> converter(List<Livro> livros) {
+		return livros.stream().map(LivroDto::new).collect(Collectors.toList());
 	}	
 
 }

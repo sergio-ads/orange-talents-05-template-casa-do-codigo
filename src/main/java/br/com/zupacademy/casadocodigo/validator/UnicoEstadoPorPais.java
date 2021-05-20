@@ -10,19 +10,15 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 @Documented
-@Constraint(validatedBy = {UniqueValueValidator.class})
-@Target({ElementType.FIELD})
+@Constraint(validatedBy = {UnicoEstadoPorPaisValidator.class})
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface UniqueValue {
+public @interface UnicoEstadoPorPais {
 
-	String message() default "{UniqueValue}";
+	String message() default "O estado deve ser único por país";
 	
 	Class<?>[] groups() default { };
 	
 	Class<? extends Payload>[] payload() default { };
-	
-	Class<?> domainClass();
-
-	String fieldName();
 	
 }

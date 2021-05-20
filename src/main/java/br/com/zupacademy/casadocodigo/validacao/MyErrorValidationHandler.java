@@ -21,11 +21,20 @@ public class MyErrorValidationHandler {
 	private MessageSource messageSource;
 	
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(IllegalStateException.class)
+	public ValidationErrorsDto handle(IllegalStateException exception) {
+		ValidationErrorsDto validationErrorsDto = new ValidationErrorsDto();
+		validationErrorsDto.addFieldError(null, exception.getLocalizedMessage());
+		
+		return validationErrorsDto;
+	}
+	
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ValidationErrorsDto handle(MethodArgumentNotValidException exception) {		
 		List<ObjectError> globalErrors = exception.getBindingResult().getGlobalErrors();
 		List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
-
+		
 		return buildValidationError(globalErrors, fieldErrors);
 	}
 	
@@ -34,14 +43,14 @@ public class MyErrorValidationHandler {
 	public ValidationErrorsDto handle(BindException exception) {		
 		List<ObjectError> globalErrors = exception.getBindingResult().getGlobalErrors();
 		List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
-
+		
 		return buildValidationError(globalErrors, fieldErrors);
 	}
 
 	private ValidationErrorsDto buildValidationError(List<ObjectError> globalErrors, List<FieldError> fieldErrors) {
 		ValidationErrorsDto validationErrorsDto = new ValidationErrorsDto();
 		globalErrors.forEach(error -> validationErrorsDto.addGlobalError(getErrorMessage(error)));
-
+		
 		fieldErrors.forEach(error -> {
 			String errorMessage = getErrorMessage(error);
 			validationErrorsDto.addFieldError(error.getField(), errorMessage);

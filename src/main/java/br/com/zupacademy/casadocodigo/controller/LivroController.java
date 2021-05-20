@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.zupacademy.casadocodigo.model.Livro;
 import br.com.zupacademy.casadocodigo.model.dto.LivroDetalhadoDto;
-import br.com.zupacademy.casadocodigo.model.dto.LivroSimplesDto;
+import br.com.zupacademy.casadocodigo.model.dto.LivroDto;
 import br.com.zupacademy.casadocodigo.model.request.LivroRequest;
 import br.com.zupacademy.casadocodigo.repository.AutorRepository;
 import br.com.zupacademy.casadocodigo.repository.CategoriaRepository;
@@ -34,9 +34,9 @@ public class LivroController {
 	private AutorRepository autorRepository;
 	
 	@GetMapping
-	public List<LivroSimplesDto> listAll() {
+	public List<LivroDto> listAll() {
 		List<Livro> livros = livroRepository.findAll();
-		return LivroSimplesDto.converter(livros);
+		return LivroDto.converter(livros);
 	}
 	
 	@GetMapping(value = "/{id}")
