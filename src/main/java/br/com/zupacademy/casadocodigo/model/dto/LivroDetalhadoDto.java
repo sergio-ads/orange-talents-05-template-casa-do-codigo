@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
 import br.com.zupacademy.casadocodigo.model.Livro;
 
-public class LivroDto {
+public class LivroDetalhadoDto {
 	private String isbn;
 	private String titulo;
 	private String resumo;
@@ -23,7 +23,7 @@ public class LivroDto {
 	private List<CategoriaDto> categorias;
 	private List<AutorDto> autores;
 	
-	public LivroDto(Livro livro) {
+	public LivroDetalhadoDto(Livro livro) {
 		this.isbn = livro.getIsbn();
 		this.titulo = livro.getTitulo();
 		this.resumo = livro.getResumo();
@@ -73,8 +73,8 @@ public class LivroDto {
 		return autores;
 	}
 
-	public static List<LivroDto> converter(List<Livro> livros) {
-		return livros.stream().map(LivroDto::new).collect(Collectors.toList());
+	public static List<LivroDetalhadoDto> converter(List<Livro> livros) {
+		return livros.stream().map(LivroDetalhadoDto::new).collect(Collectors.toList());
 	}	
 
 }
