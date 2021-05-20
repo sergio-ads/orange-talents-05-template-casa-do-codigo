@@ -1,6 +1,7 @@
 package br.com.zupacademy.casadocodigo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -36,6 +37,15 @@ public class LivroController {
 	public List<LivroSimplesDto> listAll() {
 		List<Livro> livros = livroRepository.findAll();
 		return LivroSimplesDto.converter(livros);
+	}
+	
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<LivroDetalhadoDto> get(@PathVariable String id) {
+		Optional<Livro> livro = livroRepository.findById(id);
+		if(livro.isPresent())
+			return ResponseEntity.ok(new LivroDetalhadoDto(livro.get()));
+		
+		return ResponseEntity.notFound().build();
 	}
 	
 	@PostMapping
