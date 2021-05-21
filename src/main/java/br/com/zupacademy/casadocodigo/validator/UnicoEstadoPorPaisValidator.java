@@ -17,11 +17,6 @@ public class UnicoEstadoPorPaisValidator implements ConstraintValidator<UnicoEst
 	@PersistenceContext
 	private EntityManager manager;
 	
-	
-	@Override
-	public void initialize(UnicoEstadoPorPais params) {
-	}
-	
 	@Override
 	public boolean isValid(EstadoRequest estado, ConstraintValidatorContext context) {
 		Query query = manager.createQuery("select 1 from Estado e where e.nome=:nome AND e.pais.nome=:paisNome");

@@ -24,7 +24,8 @@ public class MyErrorValidationHandler {
 	@ExceptionHandler(IllegalStateException.class)
 	public ValidationErrorsDto handle(IllegalStateException exception) {
 		ValidationErrorsDto validationErrorsDto = new ValidationErrorsDto();
-		validationErrorsDto.addFieldError(null, exception.getLocalizedMessage());
+		//validationErrorsDto.addFieldError(null, exception.getLocalizedMessage());
+		validationErrorsDto.addGlobalError(exception.getLocalizedMessage());
 		
 		return validationErrorsDto;
 	}

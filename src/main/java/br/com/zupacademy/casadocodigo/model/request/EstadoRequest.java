@@ -20,7 +20,7 @@ public class EstadoRequest {
 	}
 
 	public Estado toModel(PaisRepository paisRepository) {		
-		Pais paisObjeto = paisRepository.findByNome(pais);
+		Pais paisObjeto = paisRepository.findByNome(pais).get();
 		Estado estado = new Estado(paisObjeto, nome);
 		return estado;
 	}

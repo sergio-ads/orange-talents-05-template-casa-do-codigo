@@ -10,4 +10,6 @@ public interface EstadoRepository extends JpaRepository<Estado, Long> {
 
 	Optional<Estado> findByNome(String nome);
 
+	Optional<Estado> findByNomeAndPais_Nome(String estado, String pais);
+
 }

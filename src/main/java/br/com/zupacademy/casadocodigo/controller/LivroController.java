@@ -40,8 +40,8 @@ public class LivroController {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<LivroDetalhadoDto> get(@PathVariable String id) {
-		Optional<Livro> livro = livroRepository.findById(id);
+	public ResponseEntity<LivroDetalhadoDto> get(@PathVariable Long id) {
+		Optional<Livro> livro = livroRepository.findByIsbn(id);
 		if(livro.isPresent())
 			return ResponseEntity.ok(new LivroDetalhadoDto(livro.get()));
 		
@@ -56,8 +56,8 @@ public class LivroController {
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<?> delete(@PathVariable String id) {
-		livroRepository.deleteById(id);
+	public ResponseEntity<?> delete(@PathVariable Long id) {
+		livroRepository.deleteByIsbn(id);
 		return ResponseEntity.ok().build();
 	}
 
